@@ -1,0 +1,2 @@
+rgbd_dataset = 'PATH_TO_RGBD_DATASET' # from University of Washington
+rgbd_dataset_eval = 'PATH_TO_RGBD_DATASET_EVAL' # from University of Washington 
