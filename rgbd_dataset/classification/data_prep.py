@@ -36,7 +36,7 @@ def generate_labels(output_dir='data', instance=True):
                 label = img_file.split('/')[0] # For category level classification   
             if label not in labels:
                     labels.append(label)
-            f.write('%s/%s %s\n'%(rgbd_dataset, img_file, labels.index(label)))
+            f.write('%s %s\n'%(img_file, labels.index(label)))
     
     with open(output_dir+'/labels.txt','w') as f:
         for i, label in enumerate(labels):
@@ -56,7 +56,11 @@ def generate_labels(output_dir='data', instance=True):
                 label = img_file.split('/')[1] # For instance level classification
             else:
                 label = img_file.split('/')[0] # For category level classification   
-            f.write('%s/%s %s\n'%(rgbd_dataset, img_file, labels.index(label)))
+            f.write('%s %s\n'%(img_file, labels.index(label)))
+    
+    print "Labels written! To create the lmdb file run the following commands:"
+    print "PATH_TO_CAFFE/build/tools/convert_imageset %s %s/train.txt PATH_TO_TRAIN_LMBD -backend lmdb -resize_height 227 -resize_width 227" % (rgbd_dataset, output_dir)
+    print "PATH_TO_CAFFE/build/tools/convert_imageset %s %s/test.txt PATH_TO_TEST_LMBD -backend lmdb -resize_height 227 -resize_width 227" % (rgbd_dataset_eval, output_dir) 
 
 if __name__ == '__main__':
     generate_labels()
