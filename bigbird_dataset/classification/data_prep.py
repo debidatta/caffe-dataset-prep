@@ -16,6 +16,7 @@ def generate_labels(output_dir='data', train_val_split=0.8, exclude_labels=[]):
     Args:
         output_dir: directory name where train.txt, test.txt and label.txt will be generated.
         train_val_split: Percent split for training and validation datasets 
+        exclude_labels: Exclude the following labels while training
     '''
     with open(objects_path,'r') as f:
         labels = [x.strip() for x in f.readlines() if x.strip not in exclude_labels]   
