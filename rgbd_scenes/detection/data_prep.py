@@ -59,6 +59,8 @@ def generate_labels(output_dir='data', instance=False, train_test_split=0.8):
         for idx in xrange(0, int(train_test_split * len(img_files))):
             img_file = img_files[idx]
             label_list = get_label_and_bbox(img_file, instance)
+            if label_list == []:
+                continue
             with open(output_dir+'/Annotations/'+str(idx)+'.txt','w' ) as anno_f:
                 for label, bbox in label_list:
                     anno_f.write('%s %s %s %s %s\n'%(bbox[0], bbox[1], bbox[2], bbox[3], labels.index(label)))
@@ -68,6 +70,8 @@ def generate_labels(output_dir='data', instance=False, train_test_split=0.8):
         for idx in xrange(int(train_test_split * len(img_files)), len(img_files)):
             img_file = img_files[idx]
             label_list = get_label_and_bbox(img_file, instance)
+            if label_list == []:
+                continue
             with open(output_dir+'/Annotations/'+str(idx)+'.txt','w' ) as anno_f:
                 for label, bbox in label_list:
                     anno_f.write('%s %s %s %s %s\n'%(bbox[0], bbox[1], bbox[2], bbox[3], labels.index(label)))
